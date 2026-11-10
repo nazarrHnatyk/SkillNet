@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="uk" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkillNet — IT Freelance Marketplace</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════
+       NAVBAR
+  ═══════════════════════════════════════ -->
+  <nav class="navbar">
+    <a href="#" class="nav-brand" data-page="home">
+      <span class="brand-logo">SN</span>
+      <span class="brand-name">SkillNet</span>
+    </a>
+
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#" class="nav-link active" data-page="home">Головна</a></li>
+      <li><a href="#" class="nav-link" data-page="orders">Замовлення</a></li>
+      <li><a href="#" class="nav-link" data-page="create">Створити замовлення</a></li>
+      <li><a href="#" class="nav-link" data-page="applications">Мої заявки</a></li>
+      <li><a href="#" class="nav-link" data-page="profile">Профіль</a></li>
+    </ul>
+
+    <!-- Кнопка теми -->
+    <button class="theme-btn" id="theme-btn" aria-label="Перемкнути тему">
+      <span id="theme-icon">☀️</span>
+    </button>
+
+    <!-- Кнопка мови -->
+    <button class="lang-btn" id="lang-btn" aria-label="Switch language">UA</button>
+
+    <button class="nav-burger" id="nav-burger" aria-label="Відкрити меню">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ═══════════════════════════════════════
+       PAGES
+  ═══════════════════════════════════════ -->
+  <main id="app">
+
+    <!-- ───────────────────────────────────
+         HOME
+    ─────────────────────────────────── -->
+    <section class="page active" id="page-home">
+
+      <!-- Hero -->
+      <div class="hero">
+        <div class="hero-inner">
+          <p class="hero-label">IT Freelance Marketplace</p>
+          <h1 class="hero-title">Знайди своє наступне<br>IT-замовлення</h1>
+          <p class="hero-sub">Тисячі проєктів від українських компаній та стартапів. Відгукуйся одним кліком.</p>
+          <div class="hero-search">
+            <input type="text" id="hero-search-input" class="hero-search-input" placeholder="Пошук замовлень: React, Python, Figma..." />
+            <button class="btn btn-hero" id="hero-search-btn">Знайти замовлення</button>
+          </div>
+          <div class="hero-stats">
+            <div class="hstat"><span class="hstat-num" id="hstat-orders">0</span><span class="hstat-label">замовлень</span></div>
+            <div class="hstat-divider"></div>
+            <div class="hstat"><span class="hstat-num">120+</span><span class="hstat-label">фрілансерів</span></div>
+            <div class="hstat-divider"></div>
+            <div class="hstat"><span class="hstat-num">98%</span><span class="hstat-label">задоволених клієнтів</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features -->
+      <div class="section-wrap">
+        <h2 class="section-title">Як це працює</h2>
+        <div class="features-grid">
+          <div class="feature-box">
+            <div class="feature-icon">�</div>
+            <h3>Клієнт публікує замовлення</h3>
+            <p>Опиши задачу, вкажи бюджет і необхідні навички — і знайди фрілансера вже сьогодні.</p>
+          </div>
+          <div class="feature-box">
+            <div class="feature-icon">🔍</div>
+            <h3>Фрілансер знаходить проєкт</h3>
+            <p>Переглядай актуальні замовлення, фільтруй за категоріями та відгукуйся на цікаві.</p>
+          </div>
+          <div class="feature-box">
+            <div class="feature-icon">🚀</div>
+            <h3>Результат у строк</h3>
+            <p>Відстежуй статус своїх заявок і будуй репутацію на платформі.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent orders -->
+      <div class="section-wrap">
+        <div class="section-header">
+          <h2 class="section-title">Останні замовлення</h2>
+          <a href="#" class="link-all" data-page="orders">Переглянути всі →</a>
+        </div>
+        <div id="home-recent-orders" class="orders-grid"></div>
+      </div>
+
+    </section>
+
+    <!-- ───────────────────────────────────
+         ORDERS
+    ─────────────────────────────────── -->
+    <section class="page" id="page-orders">
+      <div class="page-header">
+        <h2 class="page-title">Замовлення</h2>
+        <p class="page-sub">Знайди свій наступний проєкт</p>
+      </div>
+
+      <!-- Пошук + фільтр -->
+      <div class="filter-bar">
+        <div class="search-wrap">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="orders-search" class="search-input" placeholder="Пошук за назвою..." />
+        </div>
+        <div class="filter-cats" id="filter-cats">
+          <button class="cat-btn active" data-cat="all">Всі</button>
+          <button class="cat-btn" data-cat="Frontend">Frontend</button>
+          <button class="cat-btn" data-cat="Backend">Backend</button>
+          <button class="cat-btn" data-cat="UI/UX Design">UI/UX</button>
+          <button class="cat-btn" data-cat="Python">Python</button>
+          <button class="cat-btn" data-cat="Mobile">Mobile</button>
+        </div>
+      </div>
+
+      <div id="orders-list" class="orders-grid"></div>
+      <div class="empty-state hidden" id="orders-empty">
+        <div class="empty-icon">📭</div>
+        <p>За вашим запитом нічого не знайдено</p>
+      </div>
+    </section>
+
+    <!-- ───────────────────────────────────
+         CREATE ORDER
+    ─────────────────────────────────── -->
+    <section class="page" id="page-create">
+      <div class="page-header">
+        <h2 class="page-title">Створити замовлення</h2>
+        <p class="page-sub">Опиши задачу — і знайди фрілансера вже сьогодні</p>
+      </div>
+
+      <div class="form-layout">
+        <div class="card form-card">
+          <form id="create-form" class="form" novalidate>
+
+            <div class="field">
+              <label for="c-title">Назва замовлення <span class="req">*</span></label>
+              <input type="text" id="c-title" placeholder="Наприклад: Розробка лендінгу на React" maxlength="100" />
+            </div>
+
+            <div class="field">
+              <label for="c-desc">Опис роботи <span class="req">*</span></label>
+              <textarea id="c-desc" rows="5" placeholder="Детально опиши, що потрібно зробити: функціональність, вимоги, очікуваний результат..." maxlength="1000"></textarea>
+            </div>
+
+            <div class="form-row">
+              <div class="field">
+                <label for="c-budget">Бюджет (грн) <span class="req">*</span></label>
+                <input type="number" id="c-budget" placeholder="Наприклад: 15000" min="100" max="9999999" />
+              </div>
+              <div class="field">
+                <label for="c-deadline">Термін виконання <span class="req">*</span></label>
+                <input type="text" id="c-deadline" placeholder="Наприклад: 2 тижні" maxlength="50" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="c-category">Категорія <span class="req">*</span></label>
+              <select id="c-category">
+                <option value="">— Оберіть категорію —</option>
+                <option value="Frontend">Frontend</option>
+                <option value="Backend">Backend</option>
+                <option value="UI/UX Design">UI/UX Design</option>
+                <option value="Python">Python</option>
+                <option value="Mobile">Mobile</option>
+                <option value="Інше">Інше</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="c-skills">Необхідні навички <span class="req">*</span></label>
+              <input type="text" id="c-skills" placeholder="React, TypeScript, Tailwind..." maxlength="200" />
+              <span class="field-hint">Через кому</span>
+            </div>
+
+            <div class="field">
+              <label for="c-client">Ваше ім'я або назва компанії <span class="req">*</span></label>
+              <input type="text" id="c-client" placeholder="Наприклад: Іван Мельник або TechCorp" maxlength="80" />
+            </div>
+
+            <button type="submit" class="btn btn-accent btn-full">Опублікувати замовлення</button>
+          </form>
+        </div>
+
+        <div class="form-tips card">
+          <h3 class="tips-title">💡 Поради</h3>
+          <ul class="tips-list">
+            <li>Чіткий опис приваблює кращих фрілансерів</li>
+            <li>Вкажи реальний бюджет — це економить час</li>
+            <li>Перелічи всі необхідні технології</li>
+            <li>Вкажи зручний термін, з запасом на правки</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────────────────────────────
+         MY APPLICATIONS
+    ─────────────────────────────────── -->
+    <section class="page" id="page-applications">
+      <div class="page-header">
+        <h2 class="page-title">Мої заявки</h2>
+        <p class="page-sub">Відстежуй статус своїх відгуків</p>
+      </div>
+
+      <div id="applications-stats" class="app-stats-row"></div>
+
+      <div id="applications-list" class="applications-list"></div>
+      <div class="empty-state hidden" id="applications-empty">
+        <div class="empty-icon">📂</div>
+        <p>Ти ще не відгукувався на жодне замовлення</p>
+        <button class="btn btn-accent" style="margin-top:16px" data-page="orders">Переглянути замовлення</button>
+      </div>
+    </section>
+
+    <!-- ───────────────────────────────────
+         PROFILE
+    ─────────────────────────────────── -->
+    <section class="page" id="page-profile">
+      <div class="page-header">
+        <h2 class="page-title">Профіль</h2>
+        <p class="page-sub">Твоя картка фрілансера</p>
+      </div>
+
+      <div class="profile-layout">
+
+        <!-- Картка профілю -->
+        <div class="card profile-card" id="profile-view">
+          <div class="profile-top">
+            <div class="profile-avatar" id="profile-avatar-view">👤</div>
+            <div class="profile-head-info">
+              <h2 class="profile-name" id="profile-name-view">Твоє ім'я</h2>
+              <p class="profile-role" id="profile-role-view">Твоя спеціалізація</p>
+            </div>
+          </div>
+          <p class="profile-bio" id="profile-bio-view">Додай короткий опис про себе...</p>
+          <div class="profile-section">
+            <h4 class="profile-section-title">Навички</h4>
+            <div class="skills-row" id="profile-skills-view"></div>
+          </div>
+          <div class="profile-section">
+            <h4 class="profile-section-title">Досвід</h4>
+            <p class="profile-exp" id="profile-exp-view">—</p>
+          </div>
+          <div class="profile-section">
+            <h4 class="profile-section-title">Портфоліо</h4>
+            <a class="profile-portfolio" id="profile-portfolio-view" href="#" target="_blank">—</a>
+          </div>
+          <button class="btn btn-accent" id="btn-edit-profile">✏️ Редагувати профіль</button>
+        </div>
+
+        <!-- Форма редагування -->
+        <div class="card profile-edit-card hidden" id="profile-edit">
+          <h3 class="card-title">Редагувати профіль</h3>
+          <form id="profile-form" class="form" novalidate>
+
+            <div class="field">
+              <label>Аватар</label>
+              <div class="avatar-editor">
+                <!-- Поточний preview -->
+                <div class="avatar-preview-wrap">
+                  <div class="avatar-preview" id="avatar-preview">👤</div>
+                  <label class="avatar-upload-btn" for="avatar-file-input" title="Завантажити фото">
+                    📷
+                    <input type="file" id="avatar-file-input" accept="image/*" style="display:none" />
+                  </label>
+                </div>
+                <!-- Emoji picker -->
+                <div class="avatar-picker" id="avatar-picker">
+                  <button type="button" class="avatar-opt active" data-emoji="👤">👤</button>
+                  <button type="button" class="avatar-opt" data-emoji="👨‍💻">👨‍💻</button>
+                  <button type="button" class="avatar-opt" data-emoji="👩‍💻">👩‍💻</button>
+                  <button type="button" class="avatar-opt" data-emoji="🧑‍💻">🧑‍💻</button>
+                  <button type="button" class="avatar-opt" data-emoji="👨‍🎨">👨‍🎨</button>
+                  <button type="button" class="avatar-opt" data-emoji="👩‍🎨">👩‍🎨</button>
+                  <button type="button" class="avatar-opt" data-emoji="🦊">🦊</button>
+                  <button type="button" class="avatar-opt" data-emoji="🦁">🦁</button>
+                  <button type="button" class="avatar-opt" data-emoji="🐸">🐸</button>
+                  <button type="button" class="avatar-opt" data-emoji="🤖">🤖</button>
+                </div>
+                <span class="field-hint">Обери emoji або завантаж фото 📷</span>
+              </div>
+              <input type="hidden" id="p-avatar" value="👤" />
+              <input type="hidden" id="p-avatar-img" value="" />
+            </div>
+
+            <div class="form-row">
+              <div class="field">
+                <label for="p-name">Ім'я <span class="req">*</span></label>
+                <input type="text" id="p-name" placeholder="Іван Мельник" maxlength="60" />
+              </div>
+              <div class="field">
+                <label for="p-role">Спеціалізація <span class="req">*</span></label>
+                <input type="text" id="p-role" placeholder="Frontend Developer" maxlength="60" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="p-bio">Про себе</label>
+              <textarea id="p-bio" rows="3" placeholder="Коротко про досвід, стек, підхід до роботи..." maxlength="400"></textarea>
+            </div>
+
+            <div class="field">
+              <label for="p-skills">Навички</label>
+              <input type="text" id="p-skills" placeholder="React, TypeScript, Node.js..." maxlength="200" />
+              <span class="field-hint">Через кому</span>
+            </div>
+
+            <div class="field">
+              <label for="p-exp">Досвід роботи</label>
+              <input type="text" id="p-exp" placeholder="3 роки, Upwork Top Rated, 20+ проєктів" maxlength="150" />
+            </div>
+
+            <div class="field">
+              <label for="p-portfolio">Посилання на портфоліо</label>
+              <input type="url" id="p-portfolio" placeholder="https://github.com/username" maxlength="200" />
+            </div>
+
+            <div class="form-row">
+              <button type="submit" class="btn btn-accent">Зберегти</button>
+              <button type="button" class="btn btn-ghost" id="btn-cancel-profile">Скасувати</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════ MODAL ═══════════ -->
+  <div class="modal-overlay hidden" id="modal-overlay">
+    <div class="modal" id="modal">
+      <button class="modal-close" id="modal-close">✕</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════ TOAST ═══════════ -->
+  <div class="toast hidden" id="toast"></div>
+
+  <script src="i18n.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
